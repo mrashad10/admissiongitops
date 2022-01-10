@@ -1,0 +1,13 @@
+[all]
+swarm.mrashad.com
+worker1.mrashad.com
+worker2.mrashad.com
+worker3.mrashad.com
+
+[manager]
+swarm.mrashad.com
+
+[workers]
+worker1.mrashad.com
+worker2.mrashad.com
+worker3.mrashad.com

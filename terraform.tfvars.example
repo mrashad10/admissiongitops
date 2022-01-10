@@ -1,0 +1,5 @@
+do_token="DigitalOcean API token"
+ssh_fingerprint="Your ssh key finger print"
+ssh_priv="Path to ssh private key"
+ssl_cert="Path to SSL certificate file"
+ssl_key="Path to SSL private key file"

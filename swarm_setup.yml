@@ -1,0 +1,62 @@
+---
+- name: "Basic setup"
+  hosts: all
+  tasks:
+    - name: "Set time zone"
+      timezone:
+        name: Europe/Istanbul
+
+    - name: "Install Packages"
+      apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+      loop:
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - gnupg-agent
+        - software-properties-common
+        - docker.io
+        - docker-compose
+
+    - name: Ensure Docker is started and enabled at boot
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: "Disabling Swarm if is"
+      command: docker swarm leave -f
+      ignore_errors: yes
+
+- name: "Manager setup"
+  hosts: manager
+  tasks:
+    - name: "Install Packages"
+      apt:
+        name: "{{item}}"
+        state: present
+      loop:
+        - git
+
+    - name: "Set fact: manager IP"
+      set_fact:
+        manager_ip: "{{ansible_default_ipv4.address}}"
+
+    - name: "Init Swarm manager"
+      docker_swarm:
+        state: present
+        advertise_addr: "{{ansible_default_ipv4.address}}"
+      register: init_swarm
+
+    - name: "Set fact: join token worker"
+      set_fact:
+        join_token_worker: "{{ init_swarm.swarm_facts.JoinTokens.Worker }}"
+
+- name: "Workers join the Swarm"
+  hosts: workers
+  tasks:
+    - name: "Join workers to manager"
+      command: docker swarm join --token {{hostvars[groups['manager'][0]].join_token_worker}} {{hostvars[groups['manager'][0]].manager_ip}}:2377
+      failed_when: not "'This node is already part of a swarm' in command_result.stderr"

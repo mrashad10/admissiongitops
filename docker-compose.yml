@@ -1,0 +1,41 @@
+version: "3.7"
+services:
+  rabbitmq:
+    restart: always
+    image: rabbitmq
+
+  api:
+    image: admissionapi
+    restart: always
+    depends_on:
+      - rabbitmq
+    ports:
+      - "3001:3000"
+
+  db:
+    restart: always
+    image: admissiondb
+    depends_on:
+      - rabbitmq
+    volumes:
+      - admissiondb:/volume/
+
+volumes:
+    admissiondb:
+        driver: local
+
+
+  # command: --ssl --sslcert /fullchain.pem --sslkey /privkey.pem
+  # build:
+  #   dockerfile: php.Dockerfile
+  #   context: .
+  # privileged: true
+  # user: root
+  # container_name: jenkins
+  # environment:
+  #   TZ: Europe/Istanbul
+  #   JENKINS_OPTS: "--httpPort=-1 --httpsPort=8080 --httpsKeyStore=/jenkins.jks --httpsKeyStorePassword=PASSWORD"
+  #   - DELETE_IMAGES=true
+  #   - SHOW_CONTENT_DIGEST=false
+  #   - REGISTRY_TITLE=OptimumTek Private Docker Registry
+  #   - REGISTRY_URL=http://registry:5000

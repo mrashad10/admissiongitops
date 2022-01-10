@@ -1,0 +1,12 @@
+[submodule "api"]
+	path = api
+	url = https://github.com/mrashad10/admissiondb.git
+[submodule "db"]
+	path = db
+	url = https://github.com/mrashad10/admissiondb.git
+[submodule "admissionapi"]
+	path = admissionapi
+	url = https://github.com/mrashad10/admissionapi.git
+[submodule "admissiondb"]
+	path = admissiondb
+	url = https://github.com/mrashad10/admissiondb.git
