@@ -7,6 +7,12 @@ services:
     image: admissionapi
     deploy:
       replicas: 4
+    resources:
+      limits:
+        cpus: "0.5"
+        memory: 10M    
+    restart_policy:
+      condition: on-failure
     depends_on:
       - rabbitmq
     ports:
@@ -14,6 +20,12 @@ services:
 
   db:
     image: admissiondb
+    resources:
+      limits:
+        cpus: "0.5"
+        memory: 10M    
+    restart_policy:
+      condition: on-failure
     depends_on:
       - rabbitmq
     volumes:
