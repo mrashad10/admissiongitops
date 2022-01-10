@@ -21,7 +21,7 @@ resource "digitalocean_droplet" "swarm" {
   image = "ubuntu-20-04-x64"
   name = "swarm.mrashad.com"
   region = "lon1"
-  size = "512mb"
+  size = "2gb"
   ssh_keys = [
     var.ssh_fingerprint
   ]
@@ -62,7 +62,7 @@ resource "digitalocean_droplet" "worker1" {
   image = "ubuntu-20-04-x64"
   name = "worker1.mrashad.com"
   region = "lon1"
-  size = "512mb"
+  size = "2gb"
   ssh_keys = [
     var.ssh_fingerprint
   ]
@@ -103,7 +103,7 @@ resource "digitalocean_droplet" "worker2" {
   image = "ubuntu-20-04-x64"
   name = "worker2.mrashad.com"
   region = "lon1"
-  size = "512mb"
+  size = "2gb"
   ssh_keys = [
     var.ssh_fingerprint
   ]
@@ -144,7 +144,7 @@ resource "digitalocean_droplet" "worker3" {
   image = "ubuntu-20-04-x64"
   name = "worker3.mrashad.com"
   region = "lon1"
-  size = "512mb"
+  size = "2gb"
   ssh_keys = [
     var.ssh_fingerprint
   ]
