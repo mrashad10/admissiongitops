@@ -8,3 +8,5 @@ docker build -t admissiondb:latest db
 
 docker stack deploy -c docker-compose.yml admission
 
+docker service update --force admission_db
+docker service update --force admission_api
