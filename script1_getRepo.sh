@@ -2,7 +2,7 @@
 
 git clone --recurse-submodules https://github.com/mrashad10/-admissiongitops.git gitOps
 cd gitOps
-git submodules update --remote
+git submodule update --remote
 ./script2_start_service.sh
 
 docker stack deploy -c docker-compose.yml admission
