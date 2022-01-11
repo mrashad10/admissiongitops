@@ -39,6 +39,7 @@
         state: present
       loop:
         - git
+        - jq
 
     - name: "Set fact: manager IP"
       set_fact:
