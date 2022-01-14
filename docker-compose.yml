@@ -12,7 +12,7 @@ services:
       resources:
         limits:
           cpus: "0.5"
-          memory: 10M
+          memory: 100M
     depends_on:
       - rabbitmq
     ports:
@@ -24,7 +24,7 @@ services:
       resources:
         limits:
           cpus: "0.5"
-          memory: 10M
+          memory: 100M
     depends_on:
       - rabbitmq
     volumes:
