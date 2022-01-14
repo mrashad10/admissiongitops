@@ -22,6 +22,7 @@ What things you need to be installed on the system.
 - Git
 - Docker
 - Active Docker Swarm cluster
+- jq (Command-line JSON processor for the testing script)
 - Terraform (just if you going to build the infrastructure)
 - Ansible (just if you going to build the infrastructure)
 
