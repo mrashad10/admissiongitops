@@ -13,7 +13,7 @@ function echoRed {
 # Send the validation fail request
 echo -ne "Validation Test\t"
 error=$(curl -s 'http://localhost:3001/' -H 'Content-Type: application/json' -X POST -d '{"username":"ABC 1"}')
-if [ "$error" == '{"success":false,"errors":[{"value":"ABC 1","msg":"Invalid value","param":"username","location":"body"}]}' ];then
+if [ "$error" == '{"success":false,"errors":[{"value":"ABC 1","msg":"Username must be alphabetic only","param":"username","location":"body"}]}' ];then
     echoGreen "success"
 else
     echoRed "fail"

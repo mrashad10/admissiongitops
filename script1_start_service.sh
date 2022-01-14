@@ -7,7 +7,6 @@ function containerRestart {
     fi
 }
 
-
 git submodule update --remote
 
 docker build -t admissionapi:latest api
@@ -17,6 +16,6 @@ stackStatus=$(docker stack ls |grep admission|wc -l)
 if [ $stackStatus == 0 ];then
     docker stack deploy -c docker-compose.yml admission
 else
-    containerRestart "admissionapi"
-    containerRestart "admissiondb"
+    containerRestart "api"
+    containerRestart "db"
 fi
